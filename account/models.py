@@ -1,17 +1,16 @@
-from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from .managers import UserManager
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.db import models
 
+from .managers import UserManager
 
 # Create your models here.
 
 
-
 class User(AbstractBaseUser, PermissionsMixin):
     GENDER = (
-        ('مرد', 'مرد'),
-        ('زن', 'زن'),
+        ("مرد", "مرد"),
+        ("زن", "زن"),
     )
     phone_number = models.CharField(max_length=11, unique=True)
     full_name = models.CharField(max_length=255)
@@ -23,8 +22,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    REQUIRED_FIELDS = ['full_name', 'email']
-    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ["full_name", "email"]
+    USERNAME_FIELD = "phone_number"
 
     @property
     def is_staff(self):
@@ -37,4 +36,4 @@ class OtpCode(models.Model):
     created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.phone_number} - {self.code} - {self.created}'
+        return f"{self.phone_number} - {self.code} - {self.created}"
