@@ -4,7 +4,8 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
 
 from .forms import CountdownForm, NoteForm, SchoolScheduleForm
-from .mixin import CountdownAccessMixin, NoteAccessMixin, ScheduleAccessMixin
+# from .mixin import CountdownAccessMixin, NoteAccessMixin, ScheduleAccessMixin
+from .mixin import TestUserOwner
 from .models import Countdown, Note, SchoolSchedule
 
 
@@ -17,7 +18,7 @@ class UserNoteList(ListView):
         return notes
 
 
-class NoteDetail(NoteAccessMixin, DetailView):
+class NoteDetail(TestUserOwner, DetailView):
     model = Note
     slug_field = "id"
     slug_url_kwarg = "note_id"
@@ -42,7 +43,7 @@ class NoteCreate(CreateView):
         return super(NoteCreate, self).form_invalid(form)
 
 
-class NoteUpdate(NoteAccessMixin, UpdateView):
+class NoteUpdate(TestUserOwner, UpdateView):
     model = Note
     slug_field = "id"
     slug_url_kwarg = "note_id"
@@ -61,7 +62,7 @@ class NoteUpdate(NoteAccessMixin, UpdateView):
         return super(NoteUpdate, self).form_invalid(form)
 
 
-class NoteDeleteView(NoteAccessMixin, View):
+class NoteDeleteView(TestUserOwner, View):
     def get(self, note_id):
         note = get_object_or_404(Note, note_id=note_id)
         note.delete()
@@ -78,7 +79,7 @@ class UserCountdownList(ListView):
         return Countdowns
 
 
-class CountdownDetail(CountdownAccessMixin, DetailView):
+class CountdownDetail(TestUserOwner, DetailView):
     model = Countdown
     slug_field = "id"
     slug_url_kwarg = "countdown_id"
@@ -92,7 +93,7 @@ class CountdownCreate(CreateView):
     success_url = reverse_lazy("facilities:user_countdown")
 
 
-class CountdownUpdate(CountdownAccessMixin, UpdateView):
+class CountdownUpdate(TestUserOwner, UpdateView):
     model = Countdown
     slug_field = "id"
     slug_url_kwarg = "countdown_id"
@@ -105,7 +106,7 @@ class CountdownUpdate(CountdownAccessMixin, UpdateView):
         )
 
 
-class CountdownDeleteView(CountdownAccessMixin, View):
+class CountdownDeleteView(TestUserOwner, View):
     def get(self, Countdown_id):
         countdown = get_object_or_404(Countdown, Countdown_id=Countdown_id)
         countdown.delete()
@@ -122,7 +123,7 @@ class UserScheduleList(ListView):
         return user_schedule
 
 
-class ScheduleUpdate(ScheduleAccessMixin, UpdateView):
+class ScheduleUpdate(TestUserOwner, UpdateView):
     model = SchoolSchedule
     slug_field = "id"
     slug_url_kwarg = "schedule_id"
@@ -131,7 +132,7 @@ class ScheduleUpdate(ScheduleAccessMixin, UpdateView):
     form_class = SchoolScheduleForm
 
 
-class ScheduleDeleteView(ScheduleAccessMixin, View):
+class ScheduleDeleteView(TestUserOwner, View):
     def get(self, schedule_id):
         schedule_obj = get_object_or_404(SchoolSchedule, id=schedule_id)
         schedule_obj.delete()

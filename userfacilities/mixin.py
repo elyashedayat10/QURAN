@@ -1,7 +1,13 @@
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-
+from django.contrib.auth.mixins import UserPassesTestMixin
 from .models import Countdown, Note, SchoolSchedule
+
+
+class TestUserOwner(UserPassesTestMixin):
+    def test_func(self):
+        self.object = self.get_object()
+        return self.request.user == self.object.user
 
 
 class NoteAccessMixin:
