@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, View
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
-from .models import Note
-from .forms import NoteForm
-from .mixin import NoteAccessMixin
+from .models import Note, Countdown
+from .forms import NoteForm, CountdownForm
+from .mixin import NoteAccessMixin, CountdownAccessMixin
 
 
 # Create your views here.
@@ -66,3 +66,45 @@ class NoteDeleteView(NoteAccessMixin, View):
         note.delete()
         messages.success()
         return redirect('facilities:user_note')
+
+
+# countdown
+class UserCountdownList(ListView):
+    template_name = 'facilities/user_countdown_list.html'
+
+    def get_queryset(self):
+        Countdowns = Countdown.objects.filter(user=self.request.user)
+        return Countdowns
+
+
+class CountdownDetail(CountdownAccessMixin, DetailView):
+    model = Countdown
+    slug_field = 'id'
+    slug_url_kwarg = 'countdown_id'
+    template_name = 'facilities/countdown_detail.html'
+
+
+class CountdownCreate(CreateView):
+    model = Countdown
+    form_class = CountdownForm
+    template_name = 'facilities/count_down_create.html'
+    success_url = reverse_lazy('facilities:user_countdown')
+
+
+class CountdownUpdate(CountdownAccessMixin, UpdateView):
+    model = Countdown
+    slug_field = 'id'
+    slug_url_kwarg = 'countdown_id'
+    template_name = 'facilities/countdown_update.html'
+    form_class = CountdownForm
+
+    def get_success_url(self):
+        return reverse('facilities:countdown_detail', args=[self.kwargs.get('countdown_id')])
+
+
+class CountdownDeleteView(CountdownAccessMixin, View):
+    def get(self, Countdown_id):
+        countdown = get_object_or_404(Countdown, Countdown_id=Countdown_id)
+        countdown.delete()
+        messages.success()
+        return redirect('facilities:user_countdown')

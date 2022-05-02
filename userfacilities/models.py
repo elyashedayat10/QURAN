@@ -15,3 +15,10 @@ class Note(TimeStampedModel):
         return f'{self.user}-{self.title}'
 
 
+class Countdown(TimeStampedModel):
+    user = models.ForeignKey(user, on_delete=models.CASCADE, related_name='countdowns')
+    title = models.CharField(max_length=255)
+    start_time = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.user}-{self.title}'
