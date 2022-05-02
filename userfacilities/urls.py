@@ -15,6 +15,11 @@ from .views import (
     UserCountdownList,
     UserNoteList,
     UserScheduleList,
+    UserQadaList,
+    QadaDetail,
+    QadaUpdate,
+    QadaDeleteView,
+    QadaCreate,
 )
 
 app_name = "facilities"
@@ -24,6 +29,11 @@ urlpatterns = [
     path("note_create/", NoteCreate.as_view(), name="note_create"),
     path("note_delete/<int:note_id>/", NoteDeleteView.as_view(), name="note_delete"),
     path("note_update/<int:note_id>/", NoteUpdate.as_view(), name="note_update"),
+    path("user_qada/", UserQadaList.as_view(), name="user_qada"),
+    path("qada_detail/<int:qada_id>/", QadaDetail.as_view(), name="qada_detail"),
+    path("qada_create/", QadaCreate.as_view(), name="qada_create"),
+    path("qada_delete/<int:qada_id>/", QadaDeleteView.as_view(), name="qada_delete"),
+    path("qada_update/<int:qada_id>/", QadaUpdate.as_view(), name="qada_update"),
     path("user_countdown/", UserCountdownList.as_view(), name="user_countdown"),
     path(
         "countdown_detail/<int:countdown_id>/",

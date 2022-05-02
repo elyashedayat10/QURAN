@@ -1,12 +1,12 @@
 from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
 
-from .forms import CountdownForm, NoteForm, SchoolScheduleForm
+from .forms import CountdownForm, NoteForm, SchoolScheduleForm, QadaForm
 # from .mixin import CountdownAccessMixin, NoteAccessMixin, ScheduleAccessMixin
 from .mixin import TestUserOwner
-from .models import Countdown, Note, SchoolSchedule
+from .models import Countdown, Note, SchoolSchedule, QadaPrayer
 
 
 # Create your views here.
@@ -145,3 +145,43 @@ class ScheduleCreate(CreateView):
     form_class = SchoolScheduleForm
     template_name = "facilities/schedule_create.html"
     success_url = reverse_lazy("facilities:user_schedule")
+
+
+# qada
+
+class UserQadaList(ListView):
+    template_name = 'facilities/user_qada_list.html'
+
+    def get_queryset(self):
+        qada = QadaPrayer.objects.filter(user=self.request.user)
+        return qada
+
+
+class QadaDetail(TestUserOwner, DetailView):
+    model = QadaPrayer
+    slug_field = 'id'
+    slug_url_kwarg = 'qada_id'
+    template_name = 'facilities/qada_detail.html'
+
+
+class QadaUpdate(TestUserOwner, UpdateView):
+    model = QadaPrayer
+    slug_field = 'id'
+    slug_url_kwarg = 'qada_id'
+    template_name = 'facilities/qada_update.html'
+    success_url = reverse_lazy('facilities:user_qada')
+
+
+class QadaDeleteView(TestUserOwner, View):
+    def get(self, qada_id):
+        qada = get_object_or_404(QadaPrayer, note_id=qada_id)
+        qada.delete()
+        messages.success()
+        return redirect('facilities:user_qada')
+
+
+class QadaCreate(CreateView):
+    model = QadaPrayer
+    form_class = QadaForm
+    template_name = 'facilities/qada_create.html'
+    success_url = reverse_lazy('facilities:user_qada')

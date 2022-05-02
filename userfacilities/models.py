@@ -41,3 +41,17 @@ class SchoolSchedule(TimeStampedModel):
     fourth = models.CharField(max_length=10)
     fifth = models.CharField(max_length=10)
     sixth = models.CharField(max_length=10)
+
+
+class QadaPrayer(TimeStampedModel):
+    user = models.ForeignKey(user, on_delete=models.CASCADE, related_name="qadas")
+    NAMAZ = (
+        ('صبح', 'صبح'),
+        ('ظهر', 'ظهر'),
+        ('عصر', 'عصر'),
+        ('مغرب', 'مغرب'),
+        ('عشا', 'عشا'),
+        ('آیات', 'آیات'),
+    )
+    namaz = models.CharField(max_length=10, choices=NAMAZ)
+    count = models.PositiveSmallIntegerField()
