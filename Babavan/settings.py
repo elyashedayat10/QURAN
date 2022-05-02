@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "account.apps.AccountConfig",
     "userfacilities.apps.UserfacilitiesConfig",
     "dirges.apps.DirgeConfig",
+    "praiseres.apps.PraiseresConfig",
     # third
     "django_extensions",
 ]

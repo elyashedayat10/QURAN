@@ -1,13 +1,16 @@
 from django.db import models
-from utils import TimestampModel, get_file_path
+from django_extensions.db.models import TimeStampedModel
+
+from praiseres.models import Praiser
+from utils import get_file_path
 
 
 # Create your models here.
-class DirgeCategory(TimestampModel):
+class DirgeCategory(TimeStampedModel):
     title = models.CharField(max_length=255)
 
 
-class Dirge(TimestampModel):
+class Dirge(TimeStampedModel):
     category = models.ForeignKey(
         DirgeCategory,
         on_delete=models.SET_NULL,
@@ -21,11 +24,11 @@ class Dirge(TimestampModel):
     audio = models.FileField(
         upload_to=get_file_path
     )
-    singer = models.ForeignKey(
-        Singer,
+    praiser = models.ForeignKey(
+        Praiser,
         on_delete=models.CASCADE,
         related_name='dirges',
     )
 
     def __str__(self):
-        return f'{self.singer} {self.dirge_name}'
+        return f'{self.praiser} {self.dirge_name}'

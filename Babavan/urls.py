@@ -21,4 +21,5 @@ urlpatterns = [
     path("account/", include("account.urls", namespace="account")),
     path("", include("userfacilities.urls", namespace="facilities")),
     path("dirges/", include("dirges.urls", namespace="dirges")),
+    path("praiseres/", include("praiseres.urls", namespace="praiseres")),
 ]
