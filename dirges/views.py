@@ -1,5 +1,4 @@
 from django.shortcuts import (
-    render,
     get_object_or_404,
     redirect,
 )
@@ -33,25 +32,27 @@ class DirgeCategoryListView(ListView):
 
 class DirgeCategoryDetailView(DetailView):
     model = DirgeCategory
-    slug_field = "slug"
-    slug_url_kwarg = "slug"
+    slug_field = "id"
+    slug_url_kwarg = "category_id"
     template_name = "dirges/category_detail.html"
 
 
 class DirgeCategoryCreate(CreateView):
     model = DirgeCategory
-    template_name = 'dirges/dirge_category_create.html'
+    template_name = 'dirges/category_create.html'
     form_class = DirgeCategoryForm
-    success_url = reverse_lazy("config:Dirge_category_list")
+    success_url = reverse_lazy("dirges:category_list")
 
 
 class DirgeCategoryUpdate(UpdateView):
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
-    success_url = reverse_lazy("config:Dirge_category_list")
-    template_name = 'dirges/dirge_category_update.html'
+    slug_field = 'id'
+    slug_url_kwarg = 'category_id'
+    template_name = 'dirges/category_update.html'
     model = DirgeCategory
     form_class = DirgeCategoryForm
+
+    def get_success_url(self):
+        return reverse('dirges:category_detail', args=[self.kwargs.get('category_id')])
 
 
 class DirgeCategoryDelete(View):
@@ -69,7 +70,7 @@ class DirgeListView(ListView):
 class DirgeCreateView(CreateView):
     model = Dirge
     form_class = DirgeForm
-    success_url = reverse_lazy("config:Molody_List")
+    success_url = reverse_lazy("dirges:category_list")
     template_name = "dirges/create.html"
 
 

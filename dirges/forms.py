@@ -10,9 +10,11 @@ class DirgeCategoryForm(forms.ModelForm):
         model = DirgeCategory
         fields = (
             'title',
+            'logo',
         )
         labels = {
             "title": "عنوان دسته بندی",
+            'logo': 'لوگو',
         }
 
 
@@ -23,7 +25,7 @@ class DirgeForm(forms.ModelForm):
             'category',
             'dirge_name',
             'audio',
-            'singer',
+            'praiser',
         )
         labels = {
             'category': 'دسته بندی',

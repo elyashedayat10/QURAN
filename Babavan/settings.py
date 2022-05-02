@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     "userfacilities.apps.UserfacilitiesConfig",
     "dirges.apps.DirgeConfig",
     "praiseres.apps.PraiseresConfig",
+    "natals.apps.NatalsConfig",
     # third
     "django_extensions",
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -119,7 +121,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = "static/"
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "assets",
+]
+
+STATIC_ROOT = BASE_DIR / "static_cdn" / "static"
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "static_cdn" / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

@@ -7,6 +7,7 @@ from django.views.generic import (
     UpdateView,
     CreateView,
     View,
+    DetailView,
 )
 from django.urls import reverse_lazy
 from .models import Praiser
@@ -44,3 +45,10 @@ class PraiserDeleteView(View):
         praiser_obj = get_object_or_404(Praiser, name=name)
         praiser_obj.delete()
         return redirect("praiseres:list")
+
+
+class PraiserDetail(DetailView):
+    slug_field = 'id'
+    slug_url_kwarg = 'praiser_id'
+    template_name = 'praiseres/detail.html'
+    model = Praiser

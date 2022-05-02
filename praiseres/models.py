@@ -1,5 +1,6 @@
 from django.db import models
 from utils import get_file_path
+from django.urls import reverse
 from django_extensions.db.models import TimeStampedModel
 
 
@@ -16,4 +17,7 @@ class Praiser(TimeStampedModel):
     )
 
     def __str__(self):
-        return self.name
+        return f'{self.name}-{self.family}'
+
+    def get_absolute_url(self):
+        return reverse('praiseres:detail', args=[self.id])

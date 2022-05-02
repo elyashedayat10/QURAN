@@ -1,0 +1,122 @@
+{% extends 'panel/base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'panel/plugins/magnific-popup/dist/magnific-popup.css' %}"/>
+    <link rel="stylesheet" href="{% static 'panel/plugins/jquery-datatables-editable/datatables.css' %}"/>
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- Start content -->
+<div class="content">
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="m-b-30">
+                                    <button id="addToTable"
+                                            class="btn btn-primary waves-effect waves-light">افزودن <i
+                                            class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="editable-responsive">
+                            <table class="table table-striped" id="datatable-editable">
+                                <thead>
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>عنوان</th>
+                                    <th>تعداد مداحی</th>
+                                    <th>تعداد مداح</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for obj in object_list %}
+                                <tr class="gradeA">
+                                    <td>نوع دوم</td>
+                                    <td>موزیلا 1.0</td>
+                                    <td>Win 98+ / OSX.2+</td>
+                                    <td class="actions">
+                                        <a href="#" class="hidden on-editing save-row"><i
+                                                class="fa fa-save"></i></a>
+                                        <a href="#" class="hidden on-editing cancel-row"><i
+                                                class="fa fa-times"></i></a>
+                                        <a href="#" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
+                                        <a href="#" class="on-default remove-row"><i
+                                                class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+
+                                {% endbfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end: panel body -->
+
+                </div> <!-- end panel -->
+            </div> <!-- end col-->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+
+
+<!-- MODAL -->
+<div id="dialog" class="modal-block mfp-hide">
+    <section class="panel panel-info panel-color">
+        <header class="panel-heading">
+            <h2 class="panel-title">آیا مطمئن هستی؟</h2>
+        </header>
+        <div class="panel-body">
+            <div class="modal-wrapper">
+                <div class="modal-text">
+                    <p>آبا اطمینان داری که میخواهی این سطر رو پاک کنی؟</p>
+                </div>
+            </div>
+
+            <div class="row m-t-20">
+                <div class="col-md-12 text-right">
+                    <button id="dialogConfirm" class="btn btn-primary waves-effect waves-light">بله</button>
+                    <button id="dialogCancel" class="btn btn-default waves-effect">لغو</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+
+{% endblock %}
+
+<script>
+    var resizefunc = [];
+</script>
+{% block js %}
+
+
+    <!-- Editable js -->
+    <script src="{% static 'panel/plugins/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'panel/plugins/jquery-datatables-editable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'panel/plugins/datatables/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'panel/plugins/tiny-editable/mindmup-editabletable.js' %}"></script>
+    <script src="{% static 'panel/plugins/tiny-editable/numeric-input-example.js' %}"></script>
+    <!-- init -->
+    <script src="{% static 'panel/pages/datatables.editable.init.js' %}"></script>
+
+
+
+    <script>
+        $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+    </script>
+{% endblock %}

@@ -103,3 +103,7 @@ class UserLoginView(AnonymousUserMixin, View):
                 return redirect("home:home")
             messages.error(request, "", "warning")
         return render(request, self.template_name, {"form": form})
+
+
+def home(request):
+    return render(request, 'panel/tables-editable.html')
