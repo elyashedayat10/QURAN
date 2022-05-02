@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # local
     "account.apps.AccountConfig",
-    'userfacilities.apps.UserfacilitiesConfig',
+    "userfacilities.apps.UserfacilitiesConfig",
     # third
-    'django_extensions',
+    "django_extensions",
 ]
 
 MIDDLEWARE = [

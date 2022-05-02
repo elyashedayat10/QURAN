@@ -3,11 +3,11 @@ from kavenegar import *
 
 def send_otp_code(phone_number, code):
     try:
-        api = KavenegarAPI('kooft')
+        api = KavenegarAPI("kooft")
         params = {
-            'sender': '',
-            'receptor': phone_number,
-            'message': f'{code} کد تایید شما '
+            "sender": "",
+            "receptor": phone_number,
+            "message": f"{code} کد تایید شما ",
         }
         response = api.sms_send(params)
         print(response)

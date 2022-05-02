@@ -6,10 +6,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.views.generic import View
 
+from mixins import AnonymousUserMixin
+from utils import send_otp_code
+
 from .forms import UserLoginForm, UserRegisterForm, VerifyCodeForm
 from .models import OtpCode
-from utils import send_otp_code
-from mixins import AnonymousUserMixin
 
 user = get_user_model()
 
@@ -27,7 +28,7 @@ class UserRegisterView(AnonymousUserMixin, View):
         clean_data = form.cleaned_data
         if form.is_valid():
             random_number = randint(1000, 9999)
-            send_otp_code(form.cleaned_data['phone'], random_number)
+            send_otp_code(form.cleaned_data["phone"], random_number)
             OtpCode.objects.create(
                 phone_number=clean_data["phone_number"], code=random_number
             )
