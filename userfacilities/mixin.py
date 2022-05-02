@@ -1,6 +1,7 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.mixins import UserPassesTestMixin
+
 from .models import Countdown, Note, SchoolSchedule
 
 

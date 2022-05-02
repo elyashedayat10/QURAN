@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # local
     "account.apps.AccountConfig",
     "userfacilities.apps.UserfacilitiesConfig",
+    "dirges.apps.DirgeConfig",
     # third
     "django_extensions",
 ]

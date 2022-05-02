@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Countdown, Note, SchoolSchedule, QadaPrayer
+from .models import Countdown, Note, QadaPrayer, SchoolSchedule
 
 
 class NoteForm(forms.ModelForm):
@@ -21,12 +21,10 @@ class CountdownForm(forms.ModelForm):
         model = Countdown
         fields = (
             "title",
-            "description",
             "start_time",
         )
         labels = {
             "title": "عنوان",
-            "description": "توضیحات",
             "start_time": "زمان شروع",
         }
 
@@ -58,6 +56,6 @@ class QadaForm(forms.ModelForm):
     class Meta:
         model = QadaPrayer
         fields = (
-            'namaz',
-            'count',
+            "namaz",
+            "count",
         )

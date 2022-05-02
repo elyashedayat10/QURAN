@@ -9,17 +9,17 @@ from .views import (
     NoteDeleteView,
     NoteDetail,
     NoteUpdate,
+    QadaCreate,
+    QadaDeleteView,
+    QadaDetail,
+    QadaUpdate,
     ScheduleCreate,
     ScheduleDeleteView,
     ScheduleUpdate,
     UserCountdownList,
     UserNoteList,
-    UserScheduleList,
     UserQadaList,
-    QadaDetail,
-    QadaUpdate,
-    QadaDeleteView,
-    QadaCreate,
+    UserScheduleList,
 )
 
 app_name = "facilities"
