@@ -59,7 +59,7 @@ class DirgeCategoryDelete(View):
     def get(self, request, slug):
         dirge_category_obj = get_object_or_404(DirgeCategory, slug=slug)
         dirge_category_obj.delete()
-        return redirect("config:Dirge_category_list")
+        return redirect("dirges:category_list:")
 
 
 class DirgeListView(ListView):

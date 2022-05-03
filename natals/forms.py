@@ -3,6 +3,7 @@ from .models import (
     Natal,
     NatalCategory,
 )
+from praiseres.models import Praiser
 
 
 class NatalCategoryForm(forms.ModelForm):
@@ -10,9 +11,11 @@ class NatalCategoryForm(forms.ModelForm):
         model = NatalCategory
         fields = (
             'title',
+            'logo',
         )
         labels = {
             "title": "عنوان دسته بندی",
+            'logo': 'لوگو',
         }
 
 
@@ -20,14 +23,22 @@ class NatalForm(forms.ModelForm):
     class Meta:
         model = Natal
         fields = (
-            'category',
-            'natal_name',
+            'name',
             'audio',
+            'category',
             'praiser',
         )
         labels = {
-            'category': 'دسته بندی',
-            'natal_name': 'نام مولودی',
+            'name': 'نام مداحی',
             'audio': 'فایل صوتی',
-            'praiser': 'خواننده',
+            'category': 'دسته بندی',
+            'praiser': 'مداح',
         }
+
+    def __init__(self, *args, **kwargs):
+        super(DirgeForm, self).__init__(*args, **kwargs)
+        self.fields['category'].empty_label = 'انتخاب کنید'
+        self.fields['praiser'].empty_label = 'انتخاب کنید'
+        self.fields['*'].error_messages.update({
+
+        })

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card-box">
-                        <h1 class="header-title m-t-0 m-b-30">افزودن دسته بندی مولودی</h1>
+                        <h1 class="header-title m-t-0 m-b-30">به روززسانی دسته بندی {{ object }}</h1>
 
                         <form action="" method="post" data-parsley-validate novalidate enctype="multipart/form-data">
                             {% csrf_token %}
@@ -25,8 +25,8 @@
 
 
                             <div class="form-group text-right m-b-0">
-                                <button class="btn btn-success form-control  waves-effect waves-light" type="submit">
-                                    افزودن دسته بندی
+                                <button class="btn btn-warning form-control  waves-effect waves-light" type="submit">
+                                    ویرایش دسته بندی
                                 </button>
                                 {#                                <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">#}
                                 {#                                    لغو#}

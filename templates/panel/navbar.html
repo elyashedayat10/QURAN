@@ -97,10 +97,10 @@
                             class="zmdi zmdi-collection-item"></i><span> مداحی </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="page-starter.html">افزودن دسته بندی مداحی</a></li>
-                        <li><a href="page-login.html">لیست دسته بندی مداحی</a></li>
-                        <li><a href="page-starter.html">افزودن مداحی</a></li>
-                        <li><a href="page-login.html">لیست مداحی ها</a></li>
+                        <li><a href="{% url 'dirges:category_create' %}">افزودن دسته بندی مداحی</a></li>
+                        <li><a href="{% url 'dirges:category_list' %}">لیست دسته بندی مداحی</a></li>
+                        <li><a href="{% url 'dirges:create' %}">افزودن مداحی</a></li>
+                        <li><a href="{% url 'dirges:list' %}">لیست مداحی ها</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">
@@ -108,10 +108,10 @@
                             class="zmdi zmdi-collection-item"></i><span> مولودی </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="page-starter.html">افزودن دسته بندی مولودی</a></li>
-                        <li><a href="page-login.html">لیست دسته بندی مولودی</a></li>
-                        <li><a href="page-login.html">افزودن مولودی</a></li>
-                        <li><a href="page-login.html">لیست مولودی ها</a></li>
+                        <li><a href="{% url 'natals:category_create' %}">افزودن دسته بندی مولودی</a></li>
+                        <li><a href="{% url 'natals:category_list' %}">لیست دسته بندی مولودی</a></li>
+                        <li><a href="{% url 'natals:create' %}">افزودن مولودی</a></li>
+                        <li><a href="{% url 'natals:list' %}">لیست مولودی ها</a></li>
                     </ul>
                 </li>
 

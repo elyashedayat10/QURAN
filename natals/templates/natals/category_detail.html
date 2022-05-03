@@ -1,0 +1,110 @@
+{% extends 'panel/base.html' %}
+{% block content %}
+
+
+    <div class="content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="bg-picture card-box">
+                        <div class="profile-info-name">
+                            <img src="{{ object.logo.url }}"
+                                 class="img-thumbnail" alt="profile-image">
+
+                            <div class="profile-info-detail">
+                                <h2 class="m-t-0 m-b-0">دسته بندی مولودی {{ object }}</h2>
+
+                                <br>
+                                <br>
+                                <a href="{% url 'dirges:category_update' object.id %}" type="submit"
+                                   class="btn btn-warning">
+                                    ویرایش
+                                </a>
+
+                                <a href="{% url 'dirges:category_delete' object.id %}" type="submit"
+                                   class="btn btn-danger ">
+                                    حذف
+                                </a>
+
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        {% for dirge in object.dirges.all %}
+                            <div class="comment">
+                                <img src="{{ dirge.logo.url }}" alt="" class="comment-avatar">
+                                <div class="comment-body">
+                                    <div class="comment-text">
+                                        <div class="comment-header">
+                                            <a href="#" title="">نام کاربر </a><span>در 2 دقیقه پیش</span>
+                                        </div>
+                                        <audio controls>
+                                            <source src="horse.ogg" type="audio/ogg">
+                                            <source src="horse.mp3" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+
+                                        <div class="m-t-15">
+                                            <a href="">
+                                                <img src="assets/images/small/img1.jpg" class="thumb-md">
+                                            </a>
+                                            <a href="">
+                                                <img src="assets/images/small/img2.jpg" class="thumb-md">
+                                            </a>
+                                            <a href="">
+                                                <img src="assets/images/small/img3.jpg" class="thumb-md">
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-footer">
+                                        <a href="#"><i class="></i></a>
+                                    <a href=" #"><i class=""></i></a>
+                                        <a href="#">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <h1>مداحی برای این دسته وجود ندارد</h1>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card-box">
+
+
+                        <h4 class="header-title m-t-0 m-b-30">ذاکران دسته بندی</h4>
+
+                        <ul class="list-group m-b-0 user-list">
+
+                            {% for praiser in object.related_dirges.all %}
+                                <li class="list-group-item">
+                                    <a href="{{ praiser.get_absolute_url }}" class="user-list-item">
+                                        <div class="avatar">
+                                            <img src="{{ praiser.image.url }}" alt="">
+                                        </div>
+                                        <div class="user-desc">
+                                            <span class="name">{{ praiser }}</span>
+
+                                        </div>
+                                    </a>
+                                </li>
+                            {% empty %}
+                                <h5>هیج مداحی برای این دسته بندی ثبت نشده</h5>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div> <!-- container -->
+
+    </div>
+{% endblock %}
+
