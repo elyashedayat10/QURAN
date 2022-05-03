@@ -26,14 +26,10 @@ class PraiserCreateView(CreateView):
     form_class = PraiserForm
     success_url = reverse_lazy("praiseres:list")
 
-    def form_invalid(self, form):
-        print(form.errors)
-        return super(PraiserCreateView, self).form_invalid(form)
-
 
 class PraiserUpdateView(UpdateView):
-    slug_field = 'name'
-    slug_url_kwarg = 'name'
+    slug_field = 'id'
+    slug_url_kwarg = 'praiser_id'
     success_url = reverse_lazy("praiseres:list")
     template_name = 'praiseres/update.html'
     model = Praiser
@@ -41,8 +37,8 @@ class PraiserUpdateView(UpdateView):
 
 
 class PraiserDeleteView(View):
-    def get(self, request, name):
-        praiser_obj = get_object_or_404(Praiser, name=name)
+    def get(self, request, praiser_id):
+        praiser_obj = get_object_or_404(Praiser, name=praiser_id)
         praiser_obj.delete()
         return redirect("praiseres:list")
 

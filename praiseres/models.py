@@ -21,3 +21,9 @@ class Praiser(TimeStampedModel):
 
     def get_absolute_url(self):
         return reverse('praiseres:detail', args=[self.id])
+
+    def dirge_count(self):
+        return self.related_dirges.count()
+
+    def natals_count(self):
+        return self.related_natals.count()
