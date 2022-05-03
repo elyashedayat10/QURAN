@@ -1,7 +1,8 @@
 from django.db import models
-from utils import get_file_path
 from django.urls import reverse
 from django_extensions.db.models import TimeStampedModel
+
+from utils import get_file_path
 
 
 # Create your models here.

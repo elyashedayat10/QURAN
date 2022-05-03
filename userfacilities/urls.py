@@ -1,26 +1,11 @@
 from django.urls import path
 
-from .views import (
-    CountdownCreate,
-    CountdownDeleteView,
-    CountdownDetail,
-    CountdownUpdate,
-    NoteCreate,
-    NoteDeleteView,
-    NoteDetail,
-    NoteUpdate,
-    QadaCreate,
-    QadaDeleteView,
-    QadaDetail,
-    QadaUpdate,
-    ScheduleCreate,
-    ScheduleDeleteView,
-    ScheduleUpdate,
-    UserCountdownList,
-    UserNoteList,
-    UserQadaList,
-    UserScheduleList,
-)
+from .views import (CountdownCreate, CountdownDeleteView, CountdownDetail,
+                    CountdownUpdate, NoteCreate, NoteDeleteView, NoteDetail,
+                    NoteUpdate, QadaCreate, QadaDeleteView, QadaDetail,
+                    QadaUpdate, ScheduleCreate, ScheduleDeleteView,
+                    ScheduleUpdate, UserCountdownList, UserNoteList,
+                    UserQadaList, UserScheduleList)
 
 app_name = "facilities"
 urlpatterns = [

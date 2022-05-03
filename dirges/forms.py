@@ -1,9 +1,8 @@
 from django import forms
-from .models import (
-    Dirge,
-    DirgeCategory,
-)
+
 from praiseres.models import Praiser
+
+from .models import Dirge, DirgeCategory
 
 
 class DirgeCategoryForm(forms.ModelForm):

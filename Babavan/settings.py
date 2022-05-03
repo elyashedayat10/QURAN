@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "praiseres.apps.PraiseresConfig",
     "natals.apps.NatalsConfig",
     "translators.apps.TranslatorsConfig",
+    "qari.apps.QariConfig",
     # third
     "django_extensions",
     'widget_tweaks',

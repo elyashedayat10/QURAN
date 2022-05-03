@@ -1,0 +1,92 @@
+{% extends 'panel/base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'panel/plugins/magnific-popup/dist/magnific-popup.css' %}"/>
+    <link rel="stylesheet" href="{% static 'panel/plugins/jquery-datatables-editable/datatables.css' %}"/>
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- Start content -->
+    <div class="content">
+        <div class="container">
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="m-b-30">
+                                        <a href="{% url 'translators:create' %}"
+                                           class="btn btn-primary waves-effect waves-light">افزودن <i
+                                                class="fa fa-plus"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="editable-responsive">
+                                <table class="table table-striped" id="datatable-editable">
+                                    <thead>
+                                    <tr>
+                                        <th>ردیف</th>
+                                        <th>نام</th>
+                                        <th>نام خانوادگی</th>
+
+                                        <th>تصویر پروفایل</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for obj in object_list %}
+                                        <tr class="gradeA">
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ obj.first_name }}
+                                            </td>
+                                            <td>{{ obj.last_name }}</td>
+                                            <td><img width="50px" height="50px" src="{{ obj.image.url }}"></td>
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- end: panel body -->
+
+                    </div> <!-- end panel -->
+                </div> <!-- end col-->
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container -->
+
+    </div> <!-- content -->
+
+
+
+
+{% endblock %}
+
+<script>
+    var resizefunc = [];
+</script>
+{% block js %}
+
+
+    <!-- Editable js -->
+    <script src="{% static 'panel/plugins/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'panel/plugins/jquery-datatables-editable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'panel/plugins/datatables/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'panel/plugins/tiny-editable/mindmup-editabletable.js' %}"></script>
+    <script src="{% static 'panel/plugins/tiny-editable/numeric-input-example.js' %}"></script>
+    <!-- init -->
+    <script src="{% static 'panel/pages/datatables.editable.init.js' %}"></script>
+
+
+
+    <script>
+        $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+    </script>
+{% endblock %}

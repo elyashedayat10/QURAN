@@ -1,16 +1,9 @@
 from django.urls import path
 
-from .views import (
-    NatalCategoryListView,
-    NatalCategoryDetailView,
-    NatalCategoryCreate,
-    NatalCategoryUpdate,
-    NatalCategoryDelete,
-    NatalListView,
-    NatalCreateView,
-    NatalUpdateView,
-    NatalDeleteView,
-)
+from .views import (NatalCategoryCreate, NatalCategoryDelete,
+                    NatalCategoryDetailView, NatalCategoryListView,
+                    NatalCategoryUpdate, NatalCreateView, NatalDeleteView,
+                    NatalListView, NatalUpdateView)
 
 app_name = 'natals'
 

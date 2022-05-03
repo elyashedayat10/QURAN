@@ -1,17 +1,9 @@
 from django.urls import path
 
-from .views import (
-    DirgeCategoryListView,
-    DirgeCategoryDetailView,
-    DirgeCategoryCreate,
-    DirgeCategoryUpdate,
-    DirgeCategoryDelete,
-    DirgeListView,
-    DirgeCreateView,
-    DirgeUpdateView,
-    DirgeDeleteView,
-    DirgeDetailView,
-)
+from .views import (DirgeCategoryCreate, DirgeCategoryDelete,
+                    DirgeCategoryDetailView, DirgeCategoryListView,
+                    DirgeCategoryUpdate, DirgeCreateView, DirgeDeleteView,
+                    DirgeDetailView, DirgeListView, DirgeUpdateView)
 
 app_name = 'dirges'
 

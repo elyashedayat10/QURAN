@@ -1,27 +1,10 @@
-from django.shortcuts import (
-    get_object_or_404,
-    redirect,
-)
-from django.urls import (
-    reverse_lazy,
-    reverse,
-)
-from django.views.generic import (
-    ListView,
-    UpdateView,
-    DetailView,
-    CreateView,
-    View,
-)
-from .models import (
-    Natal,
-    NatalCategory,
-)
-from .forms import (
-    NatalForm,
-    NatalCategoryForm,
-)
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
 
+from .forms import NatalCategoryForm, NatalForm
+from .models import Natal, NatalCategory
 
 # Create your views here.
 

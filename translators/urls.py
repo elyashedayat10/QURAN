@@ -1,10 +1,7 @@
 from django.urls import path
-from .views import (
-    TranslatorList,
-    TranslatorCreateView,
-    TranslatorUpdateView,
-    TranslatorDeleteView,
-)
+
+from .views import (TranslatorCreateView, TranslatorDeleteView, TranslatorList,
+                    TranslatorUpdateView)
 
 app_name = 'translators'
 urlpatterns = [

@@ -1,27 +1,10 @@
-from django.shortcuts import (
-    get_object_or_404,
-    redirect,
-)
-from django.urls import (
-    reverse_lazy,
-    reverse,
-)
-from django.views.generic import (
-    ListView,
-    UpdateView,
-    DetailView,
-    CreateView,
-    View,
-)
-from .models import (
-    Dirge,
-    DirgeCategory,
-)
-from .forms import (
-    DirgeForm,
-    DirgeCategoryForm,
-)
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
 
+from .forms import DirgeCategoryForm, DirgeForm
+from .models import Dirge, DirgeCategory
 
 # Create your views here.
 

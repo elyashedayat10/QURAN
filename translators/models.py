@@ -3,6 +3,7 @@ import os
 from django.db import models
 from django.utils.encoding import smart_str
 from django_extensions.db.models import TimeStampedModel
+
 from utils import get_file_path
 
 

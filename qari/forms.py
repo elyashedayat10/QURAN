@@ -1,11 +1,11 @@
 from django import forms
 
-from .models import QuranTranslateAudio, Translator
+from .models import Qari, QuranAudio
 
 
-class QuranTranslateAudioForm(forms.ModelForm):
+class QuranAudioForm(forms.ModelForm):
     class Meta:
-        model = QuranTranslateAudio
+        model = QuranAudio
         fields = (
             "audio",
         )
@@ -14,16 +14,14 @@ class QuranTranslateAudioForm(forms.ModelForm):
         }
 
 
-class TranslatorForm(forms.ModelForm):
+class QariForm(forms.ModelForm):
     class Meta:
-        model = Translator
+        model = Qari
         fields = (
             "first_name",
             "last_name",
-            'image',
         )
         labels = {
             "first_name": "نام",
             "last_name": "نام خانوادگی",
-            'image': 'تصویر پروفایل',
         }

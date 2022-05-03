@@ -1,9 +1,8 @@
 from django import forms
-from .models import (
-    Natal,
-    NatalCategory,
-)
+
 from praiseres.models import Praiser
+
+from .models import Natal, NatalCategory
 
 
 class NatalCategoryForm(forms.ModelForm):

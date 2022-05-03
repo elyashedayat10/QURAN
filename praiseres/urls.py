@@ -1,12 +1,7 @@
 from django.urls import path
 
-from .views import (
-    PraiserListView,
-    PraiserCreateView,
-    PraiserUpdateView,
-    PraiserDeleteView,
-    PraiserDetail,
-)
+from .views import (PraiserCreateView, PraiserDeleteView, PraiserDetail,
+                    PraiserListView, PraiserUpdateView)
 
 app_name = 'Paraiser'
 

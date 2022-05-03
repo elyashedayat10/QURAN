@@ -1,6 +1,7 @@
 from django.db import models
-from django_extensions.db.models import TimeStampedModel
 from django.urls import reverse
+from django_extensions.db.models import TimeStampedModel
+
 from praiseres.models import Praiser
 from utils import get_file_path
 

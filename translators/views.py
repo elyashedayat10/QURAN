@@ -1,27 +1,10 @@
-from django.shortcuts import (
-    render,
-    get_object_or_404,
-    redirect,
-)
-from django.urls import reverse
-from django.views.generic import (
-    ListView,
-    CreateView,
-    UpdateView,
-    View,
-)
-from django.urls import reverse_lazy
-from .models import (
-    Translator,
-    QuranTranslateAudio,
-)
-from .forms import (
-    QuranTranslateAudio,
-    TranslatorForm,
-)
-# from quran.models import Ayeh
-from .models import Ayeh
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView, View
 
+from .forms import QuranTranslateAudio, TranslatorForm
+# from quran.models import Ayeh
+from .models import Ayeh, QuranTranslateAudio, Translator
 
 # Create your views here.
 

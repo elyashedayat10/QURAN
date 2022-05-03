@@ -1,9 +1,9 @@
 from django.db import models
 from django.urls import reverse
-
-from utils import get_file_path
 from django_extensions.db.models import TimeStampedModel
+
 from praiseres.models import Praiser
+from utils import get_file_path
 
 
 # Create your models here.

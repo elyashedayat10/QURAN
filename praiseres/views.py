@@ -1,17 +1,10 @@
-from django.shortcuts import (
-    get_object_or_404,
-    redirect,
-)
-from django.views.generic import (
-    ListView,
-    UpdateView,
-    CreateView,
-    View,
-    DetailView,
-)
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
-from .models import Praiser
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
+
 from .forms import PraiserForm
+from .models import Praiser
 
 
 # Create your views here.
