@@ -9,7 +9,7 @@
                     <div class="card-box">
                         <h1 class="header-title m-t-0 m-b-30">به روززسانی دسته بندی {{ object }}</h1>
 
-                        <form action="" method="post" data-parsley-validate novalidate>
+                        <form action="" method="post" data-parsley-validate novalidate enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for field in form.visible_fields %}
 

@@ -70,21 +70,30 @@ class DirgeListView(ListView):
 class DirgeCreateView(CreateView):
     model = Dirge
     form_class = DirgeForm
-    success_url = reverse_lazy("dirges:category_list")
+    success_url = reverse_lazy("dirges:list")
     template_name = "dirges/create.html"
 
 
 class DirgeUpdateView(UpdateView):
     model = Dirge
     form_class = DirgeForm
-    success_url = reverse_lazy("config:Molody_List")
     template_name = "dirges/update.html"
-    slug_field = "song_name"
-    slug_url_kwarg = "song_name"
+    slug_field = "id"
+    slug_url_kwarg = "dirge_id"
+
+    def get_success_url(self):
+        return reverse("dirges:detail", args=[self.kwargs.get('dirge_id')])
+
+
+class DirgeDetailView(DetailView):
+    model = Dirge
+    template_name = 'dirges/detail.html'
+    slug_field = 'id'
+    slug_url_kwarg = 'dirge_id'
 
 
 class DirgeDeleteView(View):
     def get(self, request, song_name):
         dirge_obj = get_object_or_404(Dirge, song_name=song_name)
         dirge_obj.delete()
-        return redirect("config:Molody_List")
+        return redirect("dirges:list")

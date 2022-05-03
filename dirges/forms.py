@@ -3,6 +3,7 @@ from .models import (
     Dirge,
     DirgeCategory,
 )
+from praiseres.models import Praiser
 
 
 class DirgeCategoryForm(forms.ModelForm):
@@ -22,14 +23,22 @@ class DirgeForm(forms.ModelForm):
     class Meta:
         model = Dirge
         fields = (
-            'category',
-            'dirge_name',
+            'name',
             'audio',
+            'category',
             'praiser',
         )
         labels = {
-            'category': 'دسته بندی',
-            'dirge_name': 'نام مولودی',
+            'name': 'نام مداحی',
             'audio': 'فایل صوتی',
-            'singer': 'خواننده',
+            'category': 'دسته بندی',
+            'praiser': 'مداح',
         }
+
+    def __init__(self, *args, **kwargs):
+        super(DirgeForm, self).__init__(*args, **kwargs)
+        self.fields['category'].empty_label = 'انتخاب کنید'
+        self.fields['praiser'].empty_label = 'انتخاب کنید'
+        self.fields['*'].error_messages.update({
+
+        })

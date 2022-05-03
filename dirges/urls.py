@@ -10,6 +10,7 @@ from .views import (
     DirgeCreateView,
     DirgeUpdateView,
     DirgeDeleteView,
+    DirgeDetailView,
 )
 
 app_name = 'dirges'
@@ -24,4 +25,5 @@ urlpatterns = [
     path('create/', DirgeCreateView.as_view(), name='create'),
     path('update/<int:dirge_id>/', DirgeUpdateView.as_view(), name='update'),
     path('delete/<int:dirge_id>/', DirgeDeleteView.as_view(), name='delete'),
+    path('detail/<int:dirge_id>/', DirgeDetailView.as_view(), name='detail'),
 ]

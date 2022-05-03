@@ -2,7 +2,9 @@ import uuid
 
 from kavenegar import *
 import os
-
+errore_message={
+    ''
+}
 
 def send_otp_code(phone_number, code):
     try:

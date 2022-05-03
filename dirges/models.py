@@ -31,7 +31,7 @@ class Dirge(TimeStampedModel):
         blank=True,
         related_name='dirges',
     )
-    dirge_name = models.CharField(
+    name = models.CharField(
         max_length=255,
     )
     audio = models.FileField(
@@ -45,4 +45,4 @@ class Dirge(TimeStampedModel):
     logo = models.ImageField(upload_to=get_file_path, blank=True)
 
     def __str__(self):
-        return f'{self.praiser} {self.dirge_name}'
+        return f'{self.praiser} {self.name}'
