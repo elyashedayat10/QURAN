@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "natals.apps.NatalsConfig",
     "translators.apps.TranslatorsConfig",
     "qari.apps.QariConfig",
+    "quran.apps.QuranConfig",
     # third
     "django_extensions",
     'widget_tweaks',
