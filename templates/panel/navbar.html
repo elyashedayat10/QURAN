@@ -9,16 +9,16 @@
                      class="img-circle img-thumbnail img-responsive">
                 <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
             </div>
-            <h5><a href="#">علی یدالهی</a></h5>
+            <h5><a href="#">{{ request.user.full_name }}</a></h5>
             <ul class="list-inline">
                 <li>
-                    <a href="#">
+                    <a href="{% url 'account:update' request.user.id %}">
                         <i class="zmdi zmdi-settings"></i>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#" class="text-custom">
+                    <a href="{% url 'account:logout' %}" class="text-custom">
                         <i class="zmdi zmdi-power"></i>
                     </a>
                 </li>
@@ -112,6 +112,15 @@
                         <li><a href="{% url 'natals:category_list' %}">لیست دسته بندی مولودی</a></li>
                         <li><a href="{% url 'natals:create' %}">افزودن مولودی</a></li>
                         <li><a href="{% url 'natals:list' %}">لیست مولودی ها</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> کاربران ادمین </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'account:admin_create' %}">افزودن ادمین</a></li>
+                        <li><a href="{% url 'account:admin_list' %}">لیست ادمین ها</a></li>
                     </ul>
                 </li>
 

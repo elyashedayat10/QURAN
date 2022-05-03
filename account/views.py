@@ -1,15 +1,15 @@
 from random import randint
-
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
-from django.views.generic import View
+from django.views.generic import View, UpdateView, CreateView, ListView
 
 from mixins import AnonymousUserMixin
 from utils import send_otp_code
 
-from .forms import UserLoginForm, UserRegisterForm, VerifyCodeForm
+from .forms import UserLoginForm, UserRegisterForm, VerifyCodeForm, UserForm, AdminForm
 from .models import OtpCode
 
 user = get_user_model()
@@ -107,3 +107,24 @@ class UserLoginView(AnonymousUserMixin, View):
 
 def home(request):
     return render(request, 'panel/tables-editable.html')
+
+
+class UserUpdateView(UpdateView):
+    model = user
+    template_name = 'account/update.html'
+    success_url = reverse_lazy('account:home')
+    slug_field = 'id'
+    slug_url_kwarg = 'user_id'
+    form_class = UserForm
+
+
+class CreateAdminView(CreateView):
+    model = user
+    template_name = 'account/create_admin.html'
+    success_url = reverse_lazy('account:admin_list')
+    form_class = AdminForm
+
+
+class AdminListView(ListView):
+    queryset = user.objects.filter(is_admin=True)
+    template_name = 'account/admin_list.html'

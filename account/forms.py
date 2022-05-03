@@ -72,3 +72,40 @@ class VerifyCodeForm(forms.Form):
 class UserLoginForm(forms.Form):
     phone_number = forms.CharField(validators=[])
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+class UserForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['gender'].choices.insert(0, ('asdfasdf', 'انتخاب کنید'))
+
+    class Meta:
+        model = User
+        fields = (
+            "email",
+            "phone_number",
+            "full_name",
+            "birth_date",
+            "gender",
+        )
+        labels = {
+            "email": "ایمیل",
+            "phone_number": "شماره تماس",
+            "full_name": "نام و نام حانوادگی",
+            "birth_date": "تاریخ تولد",
+            "gender": "جنسیت",
+        }
+
+
+class AdminForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super(AdminForm, self).__init__(*args, **kwargs)
+        self.fields['email'].label = "ایمیل"
+        self.fields['phone_number'].label = "شماره تماس"
+        self.fields['full_name'].label = "نام و نام خانوادگی"
+        self.fields['birth_date'].label = "تاریخ تولد"
+        self.fields['gender'].label = "جنسیت"
+        self.fields['password1'].label = "رمز عبور"
+        self.fields['password2'].label = "تکزاز رمز عبور"
+        # self.fields['gender'].empty_label = "انتخاب کنید"

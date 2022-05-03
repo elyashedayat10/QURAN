@@ -35,7 +35,7 @@ class NatalForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(DirgeForm, self).__init__(*args, **kwargs)
+        super(NatalForm, self).__init__(*args, **kwargs)
         self.fields['category'].empty_label = 'انتخاب کنید'
         self.fields['praiser'].empty_label = 'انتخاب کنید'
         self.fields['*'].error_messages.update({

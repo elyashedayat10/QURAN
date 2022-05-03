@@ -6,18 +6,19 @@ from .forms import QariForm, QuranAudioForm
 # from quran.models import Ayeh
 from .models import Ayeh, Qari, QuranAudio
 
+
 # Create your views here.
 
 class QariList(ListView):
     model = Qari
-    template_name = "qaris/list.html"
+    template_name = "qari/list.html"
 
 
 class QariCreateView(CreateView):
     model = Qari
     form_class = QariForm
     success_url = reverse_lazy("qaris:list")
-    template_name = "qaris/create.html"
+    template_name = "qari/create.html"
 
 
 class QariUpdateView(UpdateView):
@@ -25,7 +26,7 @@ class QariUpdateView(UpdateView):
     form_class = QariForm
     slug_field = 'id'
     slug_url_kwarg = 'qari_id'
-    template_name = "qaris/update.html"
+    template_name = "qari/update.html"
 
     def get_success_url(self):
         pass
@@ -36,4 +37,4 @@ class QariDeleteView(View):
     def get(self, *args, **kwargs):
         qari = get_object_or_404(Qari, pk=kwargs.get('qari_id'))
         qari.delete()
-        return redirect('Qaris:list')
+        return redirect('qaris:list')
