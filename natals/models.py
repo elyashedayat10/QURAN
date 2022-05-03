@@ -11,7 +11,7 @@ class NatalCategory(TimeStampedModel):
     title = models.CharField(
         max_length=255,
     )
-    logo = models.ImageField(upload_to=get_file_path)
+    logo = models.ImageField(upload_to=get_file_path, blank=True)
 
     def __str__(self):
         return self.title

@@ -18,15 +18,17 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("account/", include("account.urls", namespace="account")),
-    path("", include("userfacilities.urls", namespace="facilities")),
-    path("dirges/", include("dirges.urls", namespace="dirges")),
-    path("praiseres/", include("praiseres.urls", namespace="praiseres")),
-    path("natals/", include("natals.urls", namespace="natals")),
-]
 if settings.DEBUG:
+    urlpatterns = [
+        path("admin/", admin.site.urls),
+        path("account/", include("account.urls", namespace="account")),
+        path("dirges/", include("dirges.urls", namespace="dirges")),
+        path("praiseres/", include("praiseres.urls", namespace="praiseres")),
+        path("natals/", include("natals.urls", namespace="natals")),
+        path("translators/", include("translators.urls", namespace="translators")),
+        path("", include("userfacilities.urls", namespace="facilities")),
+
+    ]
     # ADD ROOT MEDIA FILES
     urlpatterns = urlpatterns + static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
