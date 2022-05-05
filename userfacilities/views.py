@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
                                   View, DeleteView)
 
-from .forms import CountdownForm, NoteForm, QadaForm, SchoolScheduleForm
+from .forms import CountdownForm, NoteForm, QadaForm, SchoolScheduleForm, QadaUpdateForm
 # from .mixin import CountdownAccessMixin, NoteAccessMixin, ScheduleAccessMixin
 from .mixin import TestUserOwner
 from .models import Countdown, Note, QadaPrayer, SchoolSchedule
@@ -172,6 +172,7 @@ class QadaUpdate(TestUserOwner, UpdateView):
     slug_url_kwarg = "qada_id"
     template_name = "facilities/qada_update.html"
     success_url = reverse_lazy("facilities:user_qada")
+    form_class = QadaUpdateForm
 
 
 class QadaDeleteView(TestUserOwner, View):
@@ -187,3 +188,14 @@ class QadaCreate(CreateView):
     form_class = QadaForm
     template_name = "facilities/qada_create.html"
     success_url = reverse_lazy("facilities:user_qada")
+
+    def form_valid(self, form):
+        new_qada = form.save(commit=False)
+        new_qada.user = self.request.user
+        new_qada.save()
+        messages.success(self.request, '', '')
+        return super(QadaCreate, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, '', '')
+        return super(QadaCreate, self).form_invalid(form)

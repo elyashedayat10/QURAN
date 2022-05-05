@@ -59,3 +59,9 @@ class QadaForm(forms.ModelForm):
             "namaz",
             "count",
         )
+
+
+class QadaUpdateForm(QadaForm):
+    def __init__(self, *args, **kwargs):
+        super(QadaUpdateForm, self).__init__(*args, **kwargs)
+        self.fields.pop('namaz')

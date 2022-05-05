@@ -34,7 +34,7 @@ class SchoolSchedule(TimeStampedModel):
         ("پنجشنبه", "پنجشنبه"),
     )
     user = models.ForeignKey(user, on_delete=models.CASCADE, related_name="schedules")
-    day = models.CharField(max_length=10)
+    day = models.CharField(max_length=10, choices=DAY)
     first = models.CharField(max_length=10)
     second = models.CharField(max_length=10)
     third = models.CharField(max_length=10)
