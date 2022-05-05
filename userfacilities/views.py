@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
-                                  View)
+                                  View, DeleteView)
 
 from .forms import CountdownForm, NoteForm, QadaForm, SchoolScheduleForm
 # from .mixin import CountdownAccessMixin, NoteAccessMixin, ScheduleAccessMixin
@@ -28,7 +28,7 @@ class NoteDetail(TestUserOwner, DetailView):
 
 class NoteCreate(CreateView):
     model = Note
-    form_class = Note
+    form_class = NoteForm
     template_name = "facilities/user_note_create.html"
     success_url = reverse_lazy("facilities:user_note")
 
@@ -36,11 +36,11 @@ class NoteCreate(CreateView):
         new_note = form.save(commit=False)
         new_note.user = self.request.user
         new_note.save()
-        messages.success()
+        messages.success(self.request, '', '')
         return super(NoteCreate, self).form_valid(form)
 
     def form_invalid(self, form):
-        messages.error()
+        messages.error(self.request, '', '')
         return super(NoteCreate, self).form_invalid(form)
 
 
@@ -55,19 +55,19 @@ class NoteUpdate(TestUserOwner, UpdateView):
         return reverse("facilities:note_detail", args=[self.kwargs.get("note_id")])
 
     def form_valid(self, form):
-        messages.success()
+        messages.success(self.request, '', '')
         return super(NoteUpdate, self).form_valid(form)
 
     def form_invalid(self, form):
-        messages.error()
+        messages.error(self.request, '', '')
         return super(NoteUpdate, self).form_invalid(form)
 
 
-class NoteDeleteView(TestUserOwner, View):
-    def get(self, note_id):
-        note = get_object_or_404(Note, note_id=note_id)
+class NoteDeleteView(DeleteView):
+    def get(self, request, note_id):
+        note = get_object_or_404(Note, id=note_id)
         note.delete()
-        messages.success()
+        messages.success(self.request, '', '')
         return redirect("facilities:user_note")
 
 

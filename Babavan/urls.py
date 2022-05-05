@@ -13,6 +13,8 @@ urlpatterns = [
     path("qaris/", include("qari.urls", namespace="qaris")),
     path("quran/", include("quran.urls", namespace="quran")),
     path("", include("userfacilities.urls", namespace="facilities")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('', include('config.urls', namespace='config')),
 
 ]
 if settings.DEBUG:

@@ -1,10 +1,217 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <!-- App Favicon -->
+    <link rel="shortcut icon" href="{% static 'panel/images/favicon.ico' %}">
+
+    <!-- App title -->
+    <title>آقای ادمین | قالب واکنشگرا مدیریتی</title>
+
+    <!-- Editatable  Css-->
+    <link rel="stylesheet" href="{% static 'panel/plugins/magnific-popup/dist/magnific-popup.css' %}"/>
+    <link rel="stylesheet" href="{% static 'panel/plugins/jquery-datatables-editable/datatables.css' %}"/>
+
+    <!-- App CSS -->
+    <link href="{% static 'panel/css/bootstrap-rtl.min.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'panel/css/core.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'panel/css/components.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'panel/css/icons.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'panel/css/pages.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'panel/css/menu.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'panel/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="{% static 'panel/js/modernizr.min.js' %}"></script>
+
 </head>
-<body>
+
+
+<body class="fixed-left">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+        <!-- LOGO -->
+        <div class="topbar-left">
+            <a href="index.html" class="logo"><span>آقای<span>ادمین</span></span><i class="zmdi zmdi-layers"></i></a>
+        </div>
+
+        <!-- Button mobile view to collapse sidebar menu -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+
+                <!-- Page title -->
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <button class="button-menu-mobile open-left">
+                            <i class="zmdi zmdi-menu"></i>
+                        </button>
+                    </li>
+                    <li>
+                        <h4 class="page-title">جدول تغیرات</h4>
+                    </li>
+                </ul>
+
+                <!-- Right(Notification and Searchbox -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <!-- Notification -->
+                        <div class="notification-box">
+                            <ul class="list-inline m-b-0">
+                                <li>
+                                    <a href="javascript:void(0);" class="right-bar-toggle">
+                                        <i class="zmdi zmdi-notifications-none"></i>
+                                    </a>
+                                    <div class="noti-dot">
+                                        <span class="dot"></span>
+                                        <span class="pulse"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Notification bar -->
+                    </li>
+                    <li class="hidden-xs">
+                        <form role="search" class="app-search">
+                            <input type="text" placeholder="به دنبال چه می گردی ؟؟؟"
+                                   class="form-control">
+                            <a href=""><i class="fa fa-search"></i></a>
+                        </form>
+                    </li>
+                </ul>
+
+            </div><!-- end container -->
+        </div><!-- end navbar -->
+    </div>
+    <!-- Top Bar End -->
+
+
+    {% include 'user_panel/navbar.html' %}
+
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="m-b-30">
+                                            <a href="{% url 'facilities:note_create' %}"
+                                               class="btn btn-primary waves-effect waves-light">
+                                                افزودن <i class="fa fa-plus"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="editable-responsive">
+                                    <table class="table table-striped" id="datatable-editable">
+                                        <thead>
+                                        <tr>
+                                            <th>ردیف</th>
+                                            <th>عنوان</th>
+                                            <th>تاریخ</th>
+                                            <th>مشاهده</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for obj in object_list %}
+                                            <tr class="gradeX">
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ obj.title }}
+                                                </td>
+                                                <td>{{ obj.created }}</td>
+                                                <td><a href="{% url "facilities:note_detail" obj.id %}"
+                                                       class="btn btn-primary">مشاهده</a></td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- end: panel body -->
+
+                        </div> <!-- end panel -->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <footer class="footer">
+            آقای ادمین2016 ©.
+        </footer>
+
+    </div>
+
+
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+
+<script>
+    var resizefunc = [];
+</script>
+
+<!-- jQuery  -->
+<script src="{% static 'panel/js/jquery.min.js' %}"></script>
+<script src="{% static 'panel/js/bootstrap-rtl.min.js' %}"></script>
+<script src="{% static 'panel/js/detect.js' %}"></script>
+<script src="{% static 'panel/js/fastclick.js' %}"></script>
+<script src="{% static 'panel/js/jquery.slimscroll.js' %}"></script>
+<script src="{% static 'panel/js/jquery.blockUI.js' %}"></script>
+<script src="{% static 'panel/js/waves.js' %}"></script>
+<script src="{% static 'panel/js/jquery.nicescroll.js' %}"></script>
+<script src="{% static 'panel/js/jquery.scrollTo.min.js' %}"></script>
+
+<!-- Editable js -->
+<script src="{% static 'panel/plugins/magnific-popup/dist/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'panel/plugins/jquery-datatables-editable/jquery.dataTables.js' %}"></script>
+<script src="{% static 'panel/plugins/datatables/dataTables.bootstrap.js' %}"></script>
+<script src="{% static 'panel/plugins/tiny-editable/mindmup-editabletable.js' %}"></script>
+<script src="{% static 'panel/plugins/tiny-editable/numeric-input-example.js' %}"></script>
+<!-- init -->
+<script src="{% static 'panel/pages/datatables.editable.init.js' %}"></script>
+
+<!-- App js -->
+<script src="{% static 'panel/js/jquery.core.js' %}"></script>
+<script src="{% static 'panel/js/jquery.app.js' %}"></script>
+
+<script>
+    $('#mainTable').editableTableWidget().numericInputExample().find('td:first').focus();
+</script>
 
 </body>
 </html>

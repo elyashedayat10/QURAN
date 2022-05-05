@@ -1,11 +1,20 @@
 import os
 import uuid
 
+from django.core.exceptions import ValidationError
 from kavenegar import *
 
-errore_message={
+errore_message = {
     ''
 }
+
+
+def validate_only_one_instance(obj):
+    model = obj.__class__
+    if (model.objects.count() > 0 and
+            obj.id != model.objects.get().id):
+        raise ValidationError("Can only create 1 %s instance" % model.__name__)
+
 
 def send_otp_code(phone_number, code):
     try:
@@ -21,7 +30,6 @@ def send_otp_code(phone_number, code):
         print(e)
     except HTTPException as e:
         print(e)
-
 
 
 def get_file_path(instance, filename):

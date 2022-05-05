@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     "translators.apps.TranslatorsConfig",
     "qari.apps.QariConfig",
     "quran.apps.QuranConfig",
+    "config.apps.ConfigConfig",
     # third
     "django_extensions",
     'widget_tweaks',
+    "ckeditor",
 ]
 
 MIDDLEWARE = [
@@ -141,3 +143,4 @@ MEDIA_ROOT = BASE_DIR / "static_cdn" / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "account.User"
+CKEDITOR_UPLOAD_PATH = "uploads/"

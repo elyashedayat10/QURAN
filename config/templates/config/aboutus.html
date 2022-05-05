@@ -1,0 +1,35 @@
+{% extends 'panel/base.html' %}
+{% block content %}
+
+
+    <div class="content">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="bg-picture card-box">
+                        <div class="profile-info-name">
+                            {#                            <img src="{{ object.image.url }}"#}
+{#                            class="img-thumbnail" alt="profile-image">#}
+
+                            <div class="profile-info-detail">
+                                <h1 class="text-center">متن درباره ما</h1>
+
+                                <p>{{ object.description | safe }}</p>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <!--/ meta -->
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}
+

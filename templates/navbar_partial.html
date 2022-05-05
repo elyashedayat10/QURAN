@@ -1,0 +1,22 @@
+<li>{% if about %}
+    <a href="{% url 'config:about_us_create' %}" class="waves-effect "><i
+            class="zmdi zmdi-view-dashboard"></i> <span> افزودن درباره ما </span>
+    </a>
+
+{% else %}
+    <a href="{% url 'config:about_us' %}" class="waves-effect "><i
+            class="zmdi zmdi-view-dashboard"></i> <span> درباره ما </span>
+    </a>
+{% endif %}
+</li>
+<li>
+    {% if site_seeting %}
+        <a href="{% url 'config:site_setting' %}" class="waves-effect "><i
+                class="zmdi zmdi-view-dashboard"></i> <span> تنظیمات سایت </span>
+        </a>
+    {% else %}
+        <a href="{% url 'config:site_setting_create' %}" class="waves-effect "><i
+                class="zmdi zmdi-view-dashboard"></i> <span> افزودن تنظیمات سایت </span>
+        </a>
+    {% endif %}
+</li>

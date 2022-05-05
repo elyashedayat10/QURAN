@@ -1,5 +1,5 @@
 import os
-
+from quran.models import Ayeh
 from django.db import models
 from django.utils.encoding import smart_str
 from django_extensions.db.models import TimeStampedModel
@@ -18,8 +18,6 @@ def get_audio_path(instance, filename):
 
 # Create your models here.
 
-class Ayeh(models.Model):
-    pass
 
 
 class Qari(TimeStampedModel):

@@ -1,0 +1,146 @@
+{% load static %}
+{% load navbar_tags %}
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+
+        <!-- User -->
+        <div class="user-box">
+            <div class="user-img">
+                <img src="{% static  'panel/images/users/avatar-1.jpg' %}" alt="user-img" title="Mat Helme"
+                     class="img-circle img-thumbnail img-responsive">
+                <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
+            </div>
+            <h5><a href="#">{{ request.user.full_name }}</a></h5>
+            <ul class="list-inline">
+                <li>
+                    <a href="{% url 'account:update' request.user.id %}">
+                        <i class="zmdi zmdi-settings"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'account:logout' %}" class="text-custom">
+                        <i class="zmdi zmdi-power"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- End User -->
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <ul>
+                <li class="text-muted menu-title">دسته بندی ها</li>
+
+                <li>
+                    <a href="{% url 'config:panel' %}" class="waves-effect active"><i
+                            class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="typography.html" class="waves-effect"><i class="zmdi zmdi-format-underlined"></i>
+                        <span> نوشته ها </span> </a>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-invert-colors"></i>
+                        <span>یادداشت</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url "facilities:note_create" %}">افزودن یادداشت</a></li>
+                        <li><a href="{% url "facilities:user_note" %}">لیست یادداشت ها</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-view-list"></i>
+                        <span> دعا  </span>
+                        <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url "facilities:qada_create" %}">افزودن نماز قضا</a></li>
+                        <li><a href="{% url "facilities:user_qada" %}">لیست نمازهای قضا</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect "><i
+                            class="zmdi zmdi-chart"></i><span>زمان شمار</span>
+                        <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'facilities:countdown_create' %}">افزودن زمان شماز</a></li>
+                        <li><a href="{% url 'facilities:user_countdown' %}">لیست زمان شمارها</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> برنامه </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'translators:create' %}">افزودن برنامه</a></li>
+                        <li><a href="{% url 'translators:list' %}">لیست برنامه ها</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> ذکر </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'praiseres:create' %}">افزودن ذکر</a></li>
+                        <li><a href="{% url 'praiseres:list' %}">لیست ذکرها</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> ختم قرآن</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'dirges:category_create' %}">افزودن ختم قرآن</a></li>
+                        <li><a href="{% url 'dirges:category_list' %}">لیست ختم قرآن</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> قسط بندی </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'natals:category_create' %}">افزودنپ قسط بندی</a></li>
+                        <li><a href="{% url 'natals:category_list' %}">لیست اقساط</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> کاربران ادمین </span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'account:admin_create' %}">افزودن ادمین</a></li>
+                        <li><a href="{% url 'account:admin_list' %}">لیست ادمین ها</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> اسلایدر ها</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'config:slider_create' %}">افزودن اسلایدر</a></li>
+                        <li><a href="{% url 'config:slider_list' %}">لیست اسلایدر ها</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'config:contactus_list' %}" class="waves-effect active"><i
+                            class="zmdi zmdi-view-dashboard"></i> <span> تماس با ما </span>
+                    </a>
+                </li>
+                {% navbar %}
+
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <!-- Sidebar -->
+        <div class="clearfix"></div>
+
+    </div>
+
+</div>

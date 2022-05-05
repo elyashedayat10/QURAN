@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import View, UpdateView, CreateView, ListView
 
 from mixins import AnonymousUserMixin
@@ -128,3 +128,9 @@ class CreateAdminView(CreateView):
 class AdminListView(ListView):
     queryset = user.objects.filter(is_admin=True)
     template_name = 'account/admin_list.html'
+
+
+class UserDashboard(View):
+    def get(self, request):
+        user_obj = get_object_or_404(user, id=self.request.user.id)
+        return render(request, 'account/dashboard.html')

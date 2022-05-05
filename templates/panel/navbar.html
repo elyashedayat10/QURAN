@@ -1,4 +1,5 @@
 {% load static %}
+{% load navbar_tags %}
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
 
@@ -32,7 +33,8 @@
                 <li class="text-muted menu-title">دسته بندی ها</li>
 
                 <li>
-                    <a href="base.html" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span>
+                    <a href="{% url 'config:panel' %}" class="waves-effect active"><i
+                            class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span>
                     </a>
                 </li>
 
@@ -45,10 +47,10 @@
                     <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-invert-colors"></i>
                         <span> قزآن</span> <span class="menu-arrow"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="ui-buttons.html">افزودن سوره</a></li>
-                        <li><a href="ui-cards.html">لیست سوره ها</a></li>
-                        <li><a href="ui-draggable-cards.html">افزودن آیه</a></li>
-                        <li><a href="ui-checkbox-radio.html">لیست آیه ها</a></li>
+                        <li><a href="{% url "quran:sureh_create" %}">افزودن سوره</a></li>
+                        <li><a href="{% url "quran:sureh_list" %}">لیست سوره ها</a></li>
+                        <li><a href="{% url "quran:ayeh_create" %}">افزودن آیه</a></li>
+                        <li><a href="{% url "quran:ayeh_list" %}">لیست آیه ها</a></li>
                     </ul>
                 </li>
 
@@ -123,7 +125,21 @@
                         <li><a href="{% url 'account:admin_list' %}">لیست ادمین ها</a></li>
                     </ul>
                 </li>
-
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i
+                            class="zmdi zmdi-collection-item"></i><span> اسلایدر ها</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'config:slider_create' %}">افزودن اسلایدر</a></li>
+                        <li><a href="{% url 'config:slider_list' %}">لیست اسلایدر ها</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{% url 'config:contactus_list' %}" class="waves-effect active"><i
+                            class="zmdi zmdi-view-dashboard"></i> <span> تماس با ما </span>
+                    </a>
+                </li>
+                {% navbar %}
 
             </ul>
             <div class="clearfix"></div>
