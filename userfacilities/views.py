@@ -147,6 +147,12 @@ class ScheduleCreate(CreateView):
     template_name = "facilities/schedule_create.html"
     success_url = reverse_lazy("facilities:user_schedule")
 
+    def form_valid(self, form):
+        schedule_obj = form.save(commit=False)
+        schedule_obj.user = self.request.user
+        schedule_obj.save()
+        return super(ScheduleCreate, self).form_valid(form)
+
 
 # qada
 
